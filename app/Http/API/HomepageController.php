@@ -21,7 +21,7 @@ class HomepageController extends Controller
         try {
             return $this->personsRepository->index();
         }catch(Exception $e) {
-            throw $e('Nu e bn');
+            throw new Exception('Nu e bn');
         }
     }
 
