@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Movies;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Persons extends Model
 {
@@ -11,4 +13,9 @@ class Persons extends Model
 
     protected $table = 'persons';
     protected $fillable = ['uuid','nume','prenume','age'];
+
+    public function movies(): HasMany
+    {
+        return $this->hasMany(Movies::class);
+    }
 }

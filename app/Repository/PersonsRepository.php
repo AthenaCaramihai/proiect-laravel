@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use Exception;
+use App\Models\Movies;
 use App\Models\Persons;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 class PersonsRepository
 {
     public function index() {
-        return Persons::all();
+        return Persons::with(['movies'])->get();
     }
 
     public function store(array $request) {
@@ -20,7 +21,8 @@ class PersonsRepository
             'prenume' => $request['prenume'],
             'age' => $request['age']
         ]);
-        return $person->save();
+
+        return $person->movies()->save();
     }
 
     public function show(int $id) {
